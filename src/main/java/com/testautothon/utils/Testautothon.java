@@ -54,20 +54,20 @@ public class Testautothon {
 
         String device = (System.getProperty("device") == null) ? "ALL" : System.getProperty("device");
 
-        Testothon.buildNumber = (System.getProperty("buildNumber") == null) ? "11111" : System.getProperty("buildNumber");
+        Testautothon.buildNumber = (System.getProperty("buildNumber") == null) ? "11111" : System.getProperty("buildNumber");
 
-        Testothon.logJira = Boolean.parseBoolean((System.getProperty("logJira") == null) ? logJira : System.getProperty("logJira"));
-        Testothon.jiraHost = jiraHost;
-        Testothon.jenkinsBaseUrl = jenkinsBaseUrl;
+        Testautothon.logJira = Boolean.parseBoolean((System.getProperty("logJira") == null) ? logJira : System.getProperty("logJira"));
+        Testautothon.jiraHost = jiraHost;
+        Testautothon.jenkinsBaseUrl = jenkinsBaseUrl;
 
-        Testothon.name = projectName + "_" + server.toUpperCase();
-        Testothon.server = server;
-        Testothon.webUsername = webUsername;
-        Testothon.webPassword = webPassword;
-        Testothon.mobileUsername = mobileUsername;
-        Testothon.mobilePassword = mobilePassword;
-        Testothon.browser = browser;
-        Testothon.baseUrl = baseUrl;
+        Testautothon.name = projectName + "_" + server.toUpperCase();
+        Testautothon.server = server;
+        Testautothon.webUsername = webUsername;
+        Testautothon.webPassword = webPassword;
+        Testautothon.mobileUsername = mobileUsername;
+        Testautothon.mobilePassword = mobilePassword;
+        Testautothon.browser = browser;
+        Testautothon.baseUrl = baseUrl;
 
         appEnv.setName(projectName).setServer(server).setOprBundleId(oprBundleId).setAppActivity(appActivity).setAppPackage(appPackage)
                 .setDeviceType(DeviceType.IOS).setOprHockeyIosPath("")

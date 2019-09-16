@@ -1,9 +1,9 @@
 package com.testautothon.Listeners;
 
-import com.testothon.ExtentReports.ExtentManager;
-import com.testothon.ExtentReports.ExtentTestManager;
-import com.testothon.jira.JiraActivities;
-import com.testothon.utils.GuesstimateBase;
+import com.testautothon.ExtentReports.ExtentManager;
+import com.testautothon.ExtentReports.ExtentTestManager;
+import com.testautothon.jira.JiraActivities;
+import com.testautothon.utils.Testautothon;
 import com.relevantcodes.extentreports.LogStatus;
 import org.ini4j.Profile;
 import org.ini4j.Wini;
@@ -18,7 +18,7 @@ import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TestListener extends GuesstimateBase implements ITestListener {
+public class TestListener extends Testautothon implements ITestListener {
 
     private static String getTestMethodName(ITestResult iTestResult) {
         return iTestResult.getMethod().getConstructorOrMethod().getName();
@@ -61,9 +61,9 @@ public class TestListener extends GuesstimateBase implements ITestListener {
 
         String desc = ExtentTestManager.getTest().getDescription();
         if (desc.equalsIgnoreCase("mobile"))
-            webDriver = ((GuesstimateBase) testClass).getApDriver();
+            webDriver = ((Testautothon) testClass).getApDriver();
         else
-            webDriver = ((GuesstimateBase) testClass).getSeDriver();
+            webDriver = ((Testautothon) testClass).getSeDriver();
 
         String base64Screenshot = "data:image/png;base64,"
                 + ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64);

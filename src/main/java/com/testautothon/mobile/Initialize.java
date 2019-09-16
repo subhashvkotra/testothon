@@ -14,11 +14,11 @@ import java.util.*;
 
 import org.ini4j.Wini;
 
-import com.guesstimate.utils.DeviceCategory;
-import com.guesstimate.utils.DeviceEnvironment;
-import com.guesstimate.utils.DeviceType;
-import com.guesstimate.utils.RestServices;
-import com.guesstimate.utils.ServiceGenerator;
+import com.testautothon.utils.DeviceCategory;
+import com.testautothon.utils.DeviceEnvironment;
+import com.testautothon.utils.DeviceType;
+import com.testautothon.utils.RestServices;
+import com.testautothon.utils.ServiceGenerator;
 
 import io.appium.java_client.AppiumDriver;
 import okhttp3.ResponseBody;

@@ -1,6 +1,6 @@
 package com.testautothon.mobile;
 
-import com.guesstimate.utils.DeviceType;
+import com.testautothon.utils.DeviceType;
 
 public class DeviceProp {
 

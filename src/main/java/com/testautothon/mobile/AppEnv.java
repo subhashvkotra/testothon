@@ -3,8 +3,8 @@ package com.testautothon.mobile;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.guesstimate.utils.DeviceCategory;
-import com.guesstimate.utils.DeviceType;
+import com.testautothon.utils.DeviceCategory;
+import com.testautothon.utils.DeviceType;
 
 public class AppEnv {
 

@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestAutothon" verbose="1" preserve-order="true">
+	<listeners>
+		<listener class-name="com.testautothon.Listeners.TestListener" />
+		<listener class-name="com.testautothon.Listeners.AnnotationTransformer" />
+		<listener class-name="com.testautothon.Listeners.Retry" />
+		
+	</listeners>
+	<parameter name = "browser" value="chrome" />
+	<parameter name = "baseUrl" value="www.google.com" />
+	<test name="Sample Tests" preserve-order="true">
+		
+		<classes>
+
+			<class
+				name="tests.SampleTest" />
+			
+		</classes>
+	</test>
+</suite>
