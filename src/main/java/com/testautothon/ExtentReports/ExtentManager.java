@@ -14,7 +14,7 @@ public class ExtentManager {
         if (extent == null) {
 
             SimpleDateFormat ft =
-                    new SimpleDateFormat("yyyy.MM.dd 'at' hh:mm:ss");
+                    new SimpleDateFormat("yyyy-MM-dd_hhmmss");
 
             extent = new ExtentReports("./reports/" + ft.format(new Date()) + ".html", true);
         }

@@ -12,7 +12,7 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ServiceGenerator extends GuesstimateBase{
+public class ServiceGenerator extends Testautothon{
 
 	private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 

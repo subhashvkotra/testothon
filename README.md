@@ -93,7 +93,7 @@ This is the repository for the Test Autothon 2019
 ### Custom Arch type: ###
 * Go to the folder where the new project has to be created using terminal
 * Execute the cmd: mvn archetype:generate -B -DarchetypeArtifactId=maven-archetype-archetype -DgroupId=<group id> -DartifactId=<artifact id> -Dversion=<version> -Dpackage=<package>
-eg:  mvn archetype:generate -B -DarchetypeArtifactId=maven-archetype-archetype -DgroupId=com.guesstimate  -DartifactId=automation  -Dversion=1.0 -Dpackage=com.guesstimate
+eg:  mvn archetype:generate -B -DarchetypeArtifactId=maven-archetype-archetype -DgroupId=com.testautothon  -DartifactId=automation  -Dversion=1.0 -Dpackage=com.testautothon
 * Import this project in eclipse
 * Open archetype.xml under -- src -- main -- resources -- META-INF -- maven -- archetype.xml
 * Rename the archetype.xml to archetype-metadata.xml

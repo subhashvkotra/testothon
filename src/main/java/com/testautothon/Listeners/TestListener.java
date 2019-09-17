@@ -43,7 +43,10 @@ public class TestListener extends Testautothon implements ITestListener {
     public void onTestStart(ITestResult iTestResult) {
         System.out.println("\nTest case Started: " + getTestMethodName(iTestResult));
         String packName = (iTestResult.getTestClass().getName() + " -- " + iTestResult.getMethod().getMethodName());
-        ExtentTestManager.startTest(packName.substring(packName.indexOf("testcases."), packName.length()), "");
+        String desc = iTestResult.getMethod().getDescription();
+        System.out.println("TestCase Description is:"+desc);
+        ExtentTestManager.startTest(packName.substring(packName.indexOf("testcases."), packName.length()), desc);
+       
     }
 
     @Override
@@ -59,12 +62,13 @@ public class TestListener extends Testautothon implements ITestListener {
 
         WebDriver webDriver;
 
-        String desc = ExtentTestManager.getTest().getDescription();
+        /* String desc = iTestResult.getMethod().getDescription();
         if (desc.equalsIgnoreCase("mobile"))
             webDriver = ((Testautothon) testClass).getApDriver();
-        else
+        else*/
             webDriver = ((Testautothon) testClass).getSeDriver();
 
+        System.out.println("WebDriver variable value::"+webDriver);
         String base64Screenshot = "data:image/png;base64,"
                 + ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64);
 

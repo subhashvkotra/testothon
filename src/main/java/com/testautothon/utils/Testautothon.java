@@ -54,7 +54,7 @@ public class Testautothon {
 
         String device = (System.getProperty("device") == null) ? "ALL" : System.getProperty("device");
 
-        Testautothon.buildNumber = (System.getProperty("buildNumber") == null) ? "11111" : System.getProperty("buildNumber");
+       /* Testautothon.buildNumber = (System.getProperty("buildNumber") == null) ? "11111" : System.getProperty("buildNumber");
 
         Testautothon.logJira = Boolean.parseBoolean((System.getProperty("logJira") == null) ? logJira : System.getProperty("logJira"));
         Testautothon.jiraHost = jiraHost;
@@ -65,7 +65,7 @@ public class Testautothon {
         Testautothon.webUsername = webUsername;
         Testautothon.webPassword = webPassword;
         Testautothon.mobileUsername = mobileUsername;
-        Testautothon.mobilePassword = mobilePassword;
+        Testautothon.mobilePassword = mobilePassword;*/
         Testautothon.browser = browser;
         Testautothon.baseUrl = baseUrl;
 
@@ -75,7 +75,7 @@ public class Testautothon {
 
         sedriver = SeleniumDriverManager.createBrowserInstance(browser, baseUrl);
 
-        deviceProps = initialize.bringEnvironmentUp(DeviceEnvironment.valueOf(device), appEnv, false);
+       /* deviceProps = initialize.bringEnvironmentUp(DeviceEnvironment.valueOf(device), appEnv, false);
 
         int appiumPort = 4725;
 
@@ -106,7 +106,7 @@ public class Testautothon {
                 System.out.println("'" + deviceProp.getName() + "' with version '" + deviceProp.getVersion() + "'");
 
             }
-        }
+        }*/
 
     }
 

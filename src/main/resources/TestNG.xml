@@ -3,11 +3,11 @@
 	<listeners>
 		<listener class-name="com.testautothon.Listeners.TestListener" />
 		<listener class-name="com.testautothon.Listeners.AnnotationTransformer" />
-		<listener class-name="com.testautothon.Listeners.Retry" />
+		
 		
 	</listeners>
 	<parameter name = "browser" value="chrome" />
-	<parameter name = "baseUrl" value="www.google.com" />
+	<parameter name = "baseUrl" value="https://www.google.com" />
 	<test name="Sample Tests" preserve-order="true">
 		
 		<classes>

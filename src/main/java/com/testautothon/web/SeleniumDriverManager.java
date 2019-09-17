@@ -10,7 +10,7 @@ import org.openqa.selenium.safari.SafariDriver;
 
 public class SeleniumDriverManager {
 
-	private static String driversPath = "browserDrivers";
+	private static String driversPath = "src//main//resources//browserDrivers";
 
 	public static WebDriver createBrowserInstance(String browser, String mainAddress) {
 

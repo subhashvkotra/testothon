@@ -20,7 +20,7 @@ public class TestCasesCount {
         for (Package pack : packages) {
             if(pack.getName().contains("testcases")) {
                 Reflections reflections = new Reflections(pack.getName());
-                Set<Class<? extends GuesstimateBase>> classes = reflections.getSubTypesOf(GuesstimateBase.class);
+                Set<Class<? extends Testautothon>> classes = reflections.getSubTypesOf(Testautothon.class);
                 for (Class<?> claz : classes) {
 
                     getTestCaseCount(claz.getName());
