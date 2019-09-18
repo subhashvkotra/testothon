@@ -26,11 +26,19 @@ public class SampleTest extends WebPageObjRepo{
 		objWebPageBussinessMethods.type(searchBox, Keys.ENTER);
 		objWebPageBussinessMethods.click(link);
 	}
+
 	
 	@TestAuthor(name =AuthorName.Subhash)
 	@Test(description = "This is a sample MOBILE Test case")
 	public void sample_mobile() {
 		apdriver.get(baseUrl);
+	}
 		
+
+	@TestAuthor(name = AuthorName.Thrinadh)
+	@Test(description="This is a sample test2", priority =1)
+	public void Sample2() {
+		System.out.print("Sampel Verification");
+
 	}
 }
