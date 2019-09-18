@@ -1,6 +1,6 @@
 String cron_string = BRANCH_NAME == "erp-transformation-test"
 pipeline {
-	agent { label 'ANY' }
+	agent  any
 
 	stages {     
         stage ('Test'){
