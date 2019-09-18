@@ -2,7 +2,11 @@ package com.testautothon.annotation;
 
 public enum AuthorName {
 
-	Subhash("Subhash Kotra");
+	Subhash("Subhash Kotra"),
+	
+	Harish("Harish Rokkam"),
+	
+	Thrinadh("Thrinadh Kota");
 
 	private String authorName;
 

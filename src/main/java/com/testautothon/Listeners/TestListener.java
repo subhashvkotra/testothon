@@ -45,7 +45,7 @@ public class TestListener extends Testautothon implements ITestListener {
         String packName = (iTestResult.getTestClass().getName() + " -- " + iTestResult.getMethod().getMethodName());
         String desc = iTestResult.getMethod().getDescription();
         System.out.println("TestCase Description is:"+desc);
-        ExtentTestManager.startTest(packName.substring(packName.indexOf("testcases."), packName.length()), desc);
+        ExtentTestManager.startTest(packName.substring(packName.indexOf("tests."), packName.length()), desc);
        
     }
 
