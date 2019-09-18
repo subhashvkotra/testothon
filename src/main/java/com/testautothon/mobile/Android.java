@@ -17,10 +17,9 @@ public class Android {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 
 		capabilities.setCapability("deviceName", emulator.getEmulatorDeviceName());
-		capabilities.setCapability("appPackage", emulator.getAppEnv().getAppPackage());
-		capabilities.setCapability("appActivity", emulator.getAppEnv().getAppActivity());
 		capabilities.setCapability("platformName", "Android");
 		capabilities.setCapability("noReset", false);
+		capabilities.setCapability("browserName", "Chrome");
 
 		AppiumDriver<?> driver = new AppiumDriver<>(new URL("http://127.0.0.1:" + emulator.getPort() + "/wd/hub"),
 				capabilities);
@@ -36,9 +35,8 @@ public class Android {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 
 		capabilities.setCapability("deviceName", emulator.getEmulatorDeviceName());
-		capabilities.setCapability("appPackage", emulator.getAppEnv().getAppPackage());
-		capabilities.setCapability("appActivity", emulator.getAppEnv().getAppActivity());
 		capabilities.setCapability("platformName", "Android");
+		capabilities.setCapability("browserName", "Chrome");
 		capabilities.setCapability("noReset", false);
 
 		AppiumDriver<?> driver = new AppiumDriver<>(new URL("http://127.0.0.1:" + emulator.getPort() + "/wd/hub"),

@@ -62,10 +62,10 @@ public class TestListener extends Testautothon implements ITestListener {
 
         WebDriver webDriver;
 
-        /* String desc = iTestResult.getMethod().getDescription();
+         String desc = iTestResult.getMethod().getDescription();
         if (desc.equalsIgnoreCase("mobile"))
             webDriver = ((Testautothon) testClass).getApDriver();
-        else*/
+        else
             webDriver = ((Testautothon) testClass).getSeDriver();
 
         System.out.println("WebDriver variable value::"+webDriver);
@@ -85,115 +85,7 @@ public class TestListener extends Testautothon implements ITestListener {
             if (cause.getClass().getName().equalsIgnoreCase("java.lang.AssertionError")) {
                 trace = cause.getMessage();
 
-                if (isLogJira()) {
-
-                    Wini ini = null;
-                    String loggedBugRef = "";
-
-
-                    JiraActivities jiraActivities = new JiraActivities();
-
-                    try {
-                        ini = new Wini(new File("./res/jira/reportedBugs.ini"));
-
-                        Set<String> loggedBugs = new HashSet<>();
-                        Set<String> sections = ini.keySet();
-
-                        for (String sec : sections) {
-
-                            Profile.Section section = ini.get(sec);
-
-
-                            if (section != null) {
-                                loggedBugs = section.keySet();
-                            }
-                        }
-
-                        String[] bugs = trace.split("\n");
-
-                        String barrerAuthToken = "";
-
-
-                        for (String bug : bugs) {
-
-                            try {
-
-                                if (!bug.trim().equalsIgnoreCase("null") && !bug.trim().isEmpty() && !bug.trim().equalsIgnoreCase("The following asserts failed:") && !bug.trim().equalsIgnoreCase("This feature can be tested only on real device. emulators support is not yet provided.")) {
-
-                                    String summary = "Data validation: " + iTestResult.getMethod().getMethodName();
-
-                                    if (bug.trim().endsWith(",")) {
-                                        loggedBugRef = bug.trim();
-                                        loggedBugRef = loggedBugRef.substring(0, bug.trim().length() - 1);
-                                    } else
-                                        loggedBugRef = bug.trim();
-
-                                    if (bug.contains("doesn't match")) {
-                                        summary = summary + ": " + bug.substring(0, bug.indexOf("doesn't")).trim();
-                                    }
-
-
-                                    if (!loggedBugs.contains(loggedBugRef)) {
-
-
-                                        String description = iTestResult.getTestClass().getName() + " -- " + iTestResult.getMethod().getMethodName() + "\\n\\n" + bug;
-                                        String body = services.readFile("./res/jira/createBug.json").replace("{{ Environment }}", getEnvironmnet()).replace("\"{{ buildNo }}\"", getBuildNumber()).replace("{{ summary }}", summary).replace("{{ description }}", description);
-
-                                        String issueId = jiraActivities.createBug(jiraHost, barrerAuthToken, body);
-
-                                        ini.put(iTestResult.getTestClass().getName() + "." + iTestResult.getMethod().getMethodName(), loggedBugRef, issueId);
-                                        ini.store();
-
-                                        jiraActivities.addAttachmentToIssue(jiraHost, barrerAuthToken, issueId, screenPrintJira);
-
-
-                                    } else {
-
-                                        String issueId = ini.get(iTestResult.getTestClass().getName() + "." + iTestResult.getMethod().getMethodName(), loggedBugRef);
-
-
-                                        String status = jiraActivities.getStatus(jiraHost, barrerAuthToken, issueId);
-
-                                        if (status.equalsIgnoreCase("Done")) {
-
-                                            if (!jiraActivities.reopenBug(jiraHost, barrerAuthToken, issueId, "281")) {
-
-                                                System.out.println("bugsFailedToReopen " + jiraActivities.getKey(jiraHost, barrerAuthToken, issueId));
-                                                BufferedWriter writer = new BufferedWriter(new FileWriter("./res/jira/bugsFailedToReopen.text", true));
-                                                writer.write("\n" + jiraActivities.getKey(jiraHost, barrerAuthToken, issueId));
-                                                writer.close();
-                                            }
-
-                                        }
-
-                                        String comment = "This issue was also observed in buildNo: " + getBuildNumber() + "\\nReopening the issue.";
-
-                                        jiraActivities.addComments(jiraHost, barrerAuthToken, issueId, comment);
-
-
-                                    }
-                                }
-
-                            } catch (IOException e) {
-
-                                System.out.println("bugsFailedToLog " + bug);
-
-                                try {
-                                    BufferedWriter writer = new BufferedWriter(new FileWriter("./res/jira/bugsFailedToLog.text", true));
-                                    writer.write("\n" + bug);
-                                    writer.close();
-                                } catch (IOException ignored) {
-
-                                }
-                            }
-                        }
-
-                    } catch (IOException e) {
-                        System.out.println("something went wrong with opening file reportedBugs.ini");
-                    }
-
-
-                }
+               
             } else if (cause.getClass().getName().equalsIgnoreCase("org.openqa.selenium.TimeoutException")) {
 
 

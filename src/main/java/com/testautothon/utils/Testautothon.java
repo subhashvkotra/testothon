@@ -24,12 +24,10 @@ import java.util.List;
 
 public class Testautothon {
 
-    public static String name, webUsername, webPassword, mobileUsername, mobilePassword, baseUrl, browser, server, buildNumber, jiraHost, jenkinsBaseUrl;
+    public static String baseUrl, browser;
 
     public static WebDriver sedriver;
     public static AppiumDriver<?> apdriver;
-
-    public static boolean logJira;
 
     public static ArrayList<DeviceProp> deviceProps;
 
@@ -39,74 +37,23 @@ public class Testautothon {
     public static AppEnv appEnv = new AppEnv();
 
 
-    @Parameters({"server", "webUsername", "webPassword", "mobileUsername", "mobilePassword", "browser", "baseUrl", "logJira", "jiraHost", "jenkinsBaseUrl", "projectName", "oprBundleId", "appActivity", "appPackage"})
+    @Parameters({"browser", "baseUrl"})
     @BeforeSuite(alwaysRun = true)
-    public void setUp(@Optional String server, @Optional String webUsername, @Optional String webPassword,
-                      @Optional String mobileUsername, @Optional String mobilePassword,
-                      @Optional String browser, @Optional String baseUrl,
-                      @Optional String logJira, @Optional String jiraHost, @Optional String jenkinsBaseUrl, @Optional String projectName, @Optional String oprBundleId, @Optional String appActivity, @Optional String appPackage) throws IOException {
+    public void setUp(@Optional String browser, @Optional String baseUrl,
+                      @Optional String appActivity, @Optional String appPackage) throws IOException {
 
-        String operatorbuildNbrIos = (System.getProperty("oprI") == null) ? "" : System.getProperty("oprI");
-        String operatorbuildNbrAndroid = (System.getProperty("oprA") == null) ? "" : System.getProperty("oprA");
-
-        String supervisorbuildNbrIos = (System.getProperty("suprI") == null) ? "" : System.getProperty("suprI");
-        String supervisorbuildNbrAndroid = (System.getProperty("suprA") == null) ? "" : System.getProperty("suprA");
 
         String device = (System.getProperty("device") == null) ? "ALL" : System.getProperty("device");
 
-       /* Testautothon.buildNumber = (System.getProperty("buildNumber") == null) ? "11111" : System.getProperty("buildNumber");
-
-        Testautothon.logJira = Boolean.parseBoolean((System.getProperty("logJira") == null) ? logJira : System.getProperty("logJira"));
-        Testautothon.jiraHost = jiraHost;
-        Testautothon.jenkinsBaseUrl = jenkinsBaseUrl;
-
-        Testautothon.name = projectName + "_" + server.toUpperCase();
-        Testautothon.server = server;
-        Testautothon.webUsername = webUsername;
-        Testautothon.webPassword = webPassword;
-        Testautothon.mobileUsername = mobileUsername;
-        Testautothon.mobilePassword = mobilePassword;*/
         Testautothon.browser = browser;
         Testautothon.baseUrl = baseUrl;
+       
 
-        appEnv.setName(projectName).setServer(server).setOprBundleId(oprBundleId).setAppActivity(appActivity).setAppPackage(appPackage)
-                .setDeviceType(DeviceType.IOS).setOprHockeyIosPath("")
-                .setOperatorbuildNbrIos(server + "_O_" + operatorbuildNbrIos).setOperatorbuildNbrAndroid(server + "_O_" + operatorbuildNbrAndroid);
+        appEnv.setDeviceType(DeviceType.ANDROID);
 
         sedriver = SeleniumDriverManager.createBrowserInstance(browser, baseUrl);
 
-       /* deviceProps = initialize.bringEnvironmentUp(DeviceEnvironment.valueOf(device), appEnv, false);
-
-        int appiumPort = 4725;
-
-        List<DeviceProp> temp = new ArrayList<>();
-        boolean isRemoved = false;
-
-        for (DeviceProp deviceProp : deviceProps) {
-            deviceProp.setPort(appiumPort++);
-
-            try {
-
-                apdriver = initialize.startApplication(deviceProp);
-                apdriver.resetApp();
-
-            } catch (NullPointerException e) {
-                temp.add(deviceProp);
-                isRemoved = true;
-            }
-        }
-
-        deviceProps.removeAll(temp);
-
-        if (isRemoved) {
-
-            System.out.println(
-                    "Your test cases will now be executed on the following environments, as the other enviroments had problem with communicating with appium:");
-            for (DeviceProp deviceProp : deviceProps) {
-                System.out.println("'" + deviceProp.getName() + "' with version '" + deviceProp.getVersion() + "'");
-
-            }
-        }*/
+        deviceProps = initialize.bringEnvironmentUp(DeviceEnvironment.valueOf(device), appEnv, false);
 
     }
 
@@ -175,21 +122,6 @@ public class Testautothon {
         }
     }
 
-    public void beforeClassResetMobile() throws MalformedURLException {
-
-        for (DeviceProp deviceProp : deviceProps) {
-
-            apdriver = initialize.startApplication(deviceProp);
-
-            if (deviceProp.getDeviceType() == DeviceType.IOS)
-                initialize.installIPA(deviceProp);
-            else
-                apdriver.resetApp();
-
-        }
-
-    }
-
     public WebDriver getSeDriver() {
 
         return sedriver;
@@ -198,22 +130,6 @@ public class Testautothon {
     public WebDriver getApDriver() {
 
         return apdriver;
-    }
-
-    public boolean isLogJira() {
-        return logJira;
-    }
-
-    public String getBuildNumber() {
-        return buildNumber;
-    }
-
-    public String getEnvironmnet() {
-
-        if (server.equalsIgnoreCase("dev"))
-            return "Development";
-        else
-            return "Test";
     }
 
 }

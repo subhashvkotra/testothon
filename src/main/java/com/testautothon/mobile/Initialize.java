@@ -18,7 +18,7 @@ import com.testautothon.utils.DeviceCategory;
 import com.testautothon.utils.DeviceEnvironment;
 import com.testautothon.utils.DeviceType;
 import com.testautothon.utils.RestServices;
-import com.testautothon.utils.ServiceGenerator;
+//import com.testautothon.utils.ServiceGenerator;
 
 import io.appium.java_client.AppiumDriver;
 import okhttp3.ResponseBody;
@@ -35,9 +35,13 @@ public class Initialize {
 
         // Read the ANDROID_HOME environmental variable from local system.
         SystemConfig getEnvironment = new SystemConfig();
-        String androidHome = getEnvironment.getAndroidHome();
+//        String androidHome = getEnvironment.getAndroidHome();
+        String androidHome = "C:\\Users\\212745701\\AppData\\Local\\Android\\Sdk\\";
+        
+        
+        System.out.println("Android Home variable::"+androidHome);
 
-        if (appEnv.getDeviceType() == DeviceType.ANDROID) {
+        /*if (appEnv.getDeviceType() == DeviceType.ANDROID) {
 
             if (androidHome == null) {
                 System.err.println(
@@ -45,7 +49,7 @@ public class Initialize {
 
                 System.exit(0);
             }
-        }
+        }*/
 
         // Check if system confirmations are defined as expected
         checkSystemConfig();
@@ -57,8 +61,9 @@ public class Initialize {
         ArrayList<DeviceProp> devicesList = getAllRealDevices(appEnv.getDeviceType());
 
         // Get the existing emulators properties
+//        ArrayList<DeviceProp> devicesList=null;
         if (!runOnRealDeviceOnly) {
-            devicesList = getAllEmulators(androidHome, devicesList, getEnvironment.getOsName(),
+         devicesList = getAllEmulators(androidHome, devicesList, getEnvironment.getOsName(),
                     appEnv.getDeviceCategory(), appEnv);
         }
 
@@ -76,11 +81,11 @@ public class Initialize {
         // Bring emulators up and running.
         startEmulator(androidHome, devicesList);
 
-        // Download apk and ipa builds from web
+        /*// Download apk and ipa builds from web
         if (appEnv.getServer().equals("qa")) {
             downloadBuilds(appEnv, devicesList, runOnRealDeviceOnly);
         }
-
+*/
         // Validate if emulators are up and running.
         validateRunningDevices(devicesList);
 
@@ -88,7 +93,7 @@ public class Initialize {
         devicesList = returnRunningEmulators(devicesList);
 
         // install builds
-        installBuilds(devicesList);
+//        installBuilds(devicesList);
 
         return devicesList;
 
@@ -218,7 +223,7 @@ public class Initialize {
 
     }
 
-    private void downloadBuilds(AppEnv appEnv, ArrayList<DeviceProp> devicesList, boolean runOnRealDeviceOnly) {
+   /* private void downloadBuilds(AppEnv appEnv, ArrayList<DeviceProp> devicesList, boolean runOnRealDeviceOnly) {
 
         File dir = new File("./res/builds");
         if (!dir.exists())
@@ -353,7 +358,7 @@ public class Initialize {
             }
         }
 
-    }
+    }*/
 
     private ArrayList<DeviceProp> getRequiredEnvironment(DeviceEnvironment deviceEnvironment,
                                                          ArrayList<DeviceProp> devicesList) {
@@ -440,7 +445,7 @@ public class Initialize {
             }
 
             file.createNewFile();
-            System.out.println("Emulator related data is stored under '" + file.getName() + "' for your referance.");
+            System.out.println("Emulator related data is stored under '" + file.getName() + "' for your reference.");
 
             ini = new Wini(file);
             ini.add("root");
@@ -772,9 +777,12 @@ public class Initialize {
                     }
                 }
 
+                r.close();
+                p.destroy();
             }
+            
 
-            p = Runtime.getRuntime().exec("instruments -s devices");
+           /* p = Runtime.getRuntime().exec("instruments -s devices");
             r = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
             while (true) {
@@ -811,14 +819,13 @@ public class Initialize {
                 System.out.println("The following devices were not configured properly: " + unconfiguredDevices);
 
                 System.out.println("Please execute the following command to know more, 'instruments -s devices'");
-            }
+            }*/
 
             if (realDevicesList.size() == 0) {
                 System.out.println("WARN: NO REAL DEVICES FOUND.");
             }
 
-            r.close();
-            p.destroy();
+            
 
         } catch (IOException e) {
             StringWriter sw = new StringWriter();
@@ -935,7 +942,7 @@ public class Initialize {
 
             }
 
-            p = Runtime.getRuntime().exec("instruments -s devices");
+          /*  p = Runtime.getRuntime().exec("instruments -s devices");
             BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
             while (true) {
@@ -978,7 +985,7 @@ public class Initialize {
             }
 
             r.close();
-            p.destroy();
+            p.destroy();*/
 
             if (devicesList.size() == 0) {
                 System.err.println(
