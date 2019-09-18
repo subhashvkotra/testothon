@@ -26,4 +26,9 @@ public class SampleTest extends WebPageObjRepo{
 		objWebPageBussinessMethods.type(searchBox, Keys.ENTER);
 		objWebPageBussinessMethods.click(link);
 	}
+	@TestAuthor(name = AuthorName.Thrinadh)
+	@Test(description="This is a sample test2", priority =1)
+	public void Sample2() {
+		System.out.print("Sampel Verification");
+	}
 }
