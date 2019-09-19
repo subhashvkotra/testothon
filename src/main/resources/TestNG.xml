@@ -9,12 +9,13 @@
 	<parameter name = "browser" value="chrome" />
 	<parameter name = "baseUrl" value="https://twitter.com/stepin_forum" />
 	<parameter name = "listCount" value="3" />
+	<parameter name = "iTimeLinePostsCount" value="50" />
 	
 	<test name="Testautothon" preserve-order="true">
 		
 		<classes>
 
-			<class name="tests.YouMayAlsoLikeTest" >
+			<class name="tests.TwitterTest" >
 			</class>
 			
 		</classes>
