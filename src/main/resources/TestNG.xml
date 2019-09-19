@@ -14,7 +14,7 @@
 		<classes>
 
 			<class name="tests.SampleTest" >
-				<include name="sample1" />
+				<include name="sample_mobile" />
 			</class>
 			
 		</classes>

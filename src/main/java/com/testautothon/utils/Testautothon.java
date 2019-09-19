@@ -5,8 +5,12 @@ import com.testautothon.mobile.DeviceProp;
 import com.testautothon.mobile.Initialize;
 import com.testautothon.web.SeleniumDriverManager;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+
 import org.ini4j.Wini;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
@@ -18,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -53,7 +58,22 @@ public class Testautothon {
         sedriver = SeleniumDriverManager.createBrowserInstance(browser, baseUrl);
 
 //        deviceProps = initialize.bringEnvironmentUp(DeviceEnvironment.valueOf(device), appEnv, false);
-
+        DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setCapability("deviceName", "Android SDK built for x86");
+		caps.setCapability("udid", "emulator-5554"); //Give Device ID of your mobile phone
+		caps.setCapability("platformName", "Android");
+		caps.setCapability("platformVersion", "10");
+		caps.setCapability("browserName", "Chrome");
+		caps.setCapability("noReset", true);
+		
+		try {
+			apdriver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), caps);
+			
+		} catch (MalformedURLException e) {
+			System.out.println(e.getMessage());
+		}
+    
+        
     }
 
 
