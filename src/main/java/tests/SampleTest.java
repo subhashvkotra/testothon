@@ -6,10 +6,8 @@ import org.testng.annotations.Test;
 
 import com.testautothon.annotation.AuthorName;
 import com.testautothon.annotation.TestAuthor;
-import com.testautothon.bussiness.WebPageBussinessMethods;
 import com.testautothon.page.BasePageWeb;
 import com.testautothon.page.GoogleHomePage;
-import com.testautothon.page.WebPageObjRepo;
 import com.testautothon.utils.Testautothon;
 
 public class SampleTest extends Testautothon{

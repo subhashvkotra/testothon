@@ -39,7 +39,7 @@ public class SeleniumDriverManager {
 		}
 
 		driver.get(mainAddress);
-
+		driver.manage().window().maximize();
 		return driver;
 	}
 }

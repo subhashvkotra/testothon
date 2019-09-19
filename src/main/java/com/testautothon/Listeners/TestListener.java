@@ -51,7 +51,7 @@ public class TestListener extends Testautothon implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        if (getTestClassName(iTestResult).startsWith("w"))
+        if (getTestClassName(iTestResult).startsWith("o"))
             ExtentTestManager.getTest().log(LogStatus.PASS, "Wow !!! Test passed.");
     }
 
