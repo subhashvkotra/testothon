@@ -1,13 +1,13 @@
 String cron_string = BRANCH_NAME == "erp-transformation-test"
 pipeline {
-	agent  any
+	agent any
 
 	stages {     
         stage ('Test'){
             steps {
                 script {
                                      
-                       sh 'mvn test -Ddevice=ALL  -Dsuite=TestNG'
+                       sh 'mvn test -Dsuite=TestNG'
                     
                 }
             }

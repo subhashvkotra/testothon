@@ -32,7 +32,7 @@ public class WriteJSON {
 		output.put("top_like_count", likeCount);
 		output.put("biographies", listofBiographies);
 		
-		try (FileWriter file = new FileWriter("./output_GED.txt")) {
+		try (FileWriter file = new FileWriter("./reports/output_GED.json")) {
 			file.write(output.toJSONString());
 			System.out.println("Successfully Copied JSON Object to File...");
 			System.out.println("\nJSON Object: " + output);
