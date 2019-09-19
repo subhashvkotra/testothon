@@ -53,12 +53,12 @@ public class Testautothon {
         Testautothon.baseUrl = baseUrl;
        
 
-        appEnv.setDeviceType(DeviceType.ANDROID);
+//        appEnv.setDeviceType(DeviceType.ANDROID);
 
         sedriver = SeleniumDriverManager.createBrowserInstance(browser, baseUrl);
 
 //        deviceProps = initialize.bringEnvironmentUp(DeviceEnvironment.valueOf(device), appEnv, false);
-        DesiredCapabilities caps = new DesiredCapabilities();
+       /* DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setCapability("deviceName", "Android SDK built for x86");
 		caps.setCapability("udid", "emulator-5554"); //Give Device ID of your mobile phone
 		caps.setCapability("platformName", "Android");
@@ -71,57 +71,14 @@ public class Testautothon {
 			
 		} catch (MalformedURLException e) {
 			System.out.println(e.getMessage());
-		}
+		}*/
     
         
     }
 
 
     @AfterSuite(alwaysRun = true)
-    public void killEmulators() {
-
-        Wini ini = null;
-
-        try {
-            ini = new Wini(new File("./res/runningEmulators.ini"));
-
-            for (DeviceProp deviceProp : deviceProps) {
-                if (!deviceProp.isRealDevice()) {
-
-                    System.out.println("Bringing the emulator '" + deviceProp.getName() + "' down. Please wait...");
-
-                    BufferedReader r = null;
-
-                    switch (deviceProp.getDeviceType()) {
-                        case ANDROID:
-                            Process p1 = Runtime.getRuntime()
-                                    .exec("adb -s " + deviceProp.getEmulatorDeviceName() + " emu kill");
-                            r = new BufferedReader(new InputStreamReader(p1.getInputStream()));
-                            break;
-
-                        case IOS:
-                            Process p2 = Runtime.getRuntime().exec("killall Simulator");
-                            r = new BufferedReader(new InputStreamReader(p2.getInputStream()));
-                            break;
-
-                    }
-
-                    while (true) {
-
-                        String emulatorline = r.readLine();
-                        if (emulatorline == null) {
-                            ini.put(deviceProp.getName(), "isEmulatorUp", false);
-                            ini.store();
-                            break;
-                        }
-                    }
-
-                }
-
-            }
-
-        } catch (IOException | NullPointerException e1) {
-        }
+    public void killDrivers() {
 
         if (sedriver != null) {
             sedriver.quit();
