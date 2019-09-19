@@ -25,15 +25,20 @@ public class WriteJSON {
 	
 	@SuppressWarnings("unchecked")
 	public void prepareOutputJson(int retweetCount, int likeCount, String name, String handle_name, int follower_count, int following_count) {
-		/*JSONObject output = new JSONObject();
-		output.put("top_retweet_count", retweetCount);
-		output.put("top_like_count", likeCount);*/
 
-		JsonObject output = new JsonObject();
+		JSONObject output = new JSONObject();
 		JsonElement listofBiographies = prepareBiographiesJSON(name, handle_name, follower_count, following_count);
-		output.addProperty("top_retweet_count", retweetCount);
-		output.addProperty("top_like_count", likeCount);
-		output.add("biographies", listofBiographies);
+		output.put("top_retweet_count", retweetCount);
+		output.put("top_like_count", likeCount);
+		output.put("biographies", listofBiographies);
+		
+		try (FileWriter file = new FileWriter("./output_GED.txt")) {
+			file.write(output.toJSONString());
+			System.out.println("Successfully Copied JSON Object to File...");
+			System.out.println("\nJSON Object: " + output);
+		}catch (IOException e) {
+			System.out.println("Something went wrong in File write");
+		}
 	}
 
 }
