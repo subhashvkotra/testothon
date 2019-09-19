@@ -1,6 +1,8 @@
 package com.testautothon.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -41,6 +43,16 @@ public class BasePageWeb {
 	public void scrollUsingJavaScript(WebElement webElement) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
 
+	}
+	
+	public void type(WebElement element, String value)
+	{
+		element.sendKeys(value);
+	}
+	
+	public void type(WebElement element, Keys value)
+	{
+		element.sendKeys(value);
 	}
 
 }

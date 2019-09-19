@@ -7,24 +7,29 @@ import org.testng.annotations.Test;
 import com.testautothon.annotation.AuthorName;
 import com.testautothon.annotation.TestAuthor;
 import com.testautothon.bussiness.WebPageBussinessMethods;
+import com.testautothon.page.BasePageWeb;
+import com.testautothon.page.GoogleHomePage;
 import com.testautothon.page.WebPageObjRepo;
+import com.testautothon.utils.Testautothon;
 
-public class SampleTest extends WebPageObjRepo{
+public class SampleTest extends Testautothon{
 	
-	WebPageBussinessMethods objWebPageBussinessMethods;
+	BasePageWeb basePageWeb;
+	GoogleHomePage googlePage;
 	
 	@BeforeClass
 	public void invoke()
 	{
-		objWebPageBussinessMethods = new WebPageBussinessMethods();
+		basePageWeb = new BasePageWeb(sedriver);
+		googlePage = new GoogleHomePage(sedriver);
 	}
 	
 	@TestAuthor(name = AuthorName.Harish)
 	@Test(description="This is a sample test1")
 	public void sample1() {
-		objWebPageBussinessMethods.type(searchBox, "GE");
-		objWebPageBussinessMethods.type(searchBox, Keys.ENTER);
-		objWebPageBussinessMethods.click(link);
+		basePageWeb.type(googlePage.getSearchBox(), "GE");
+		basePageWeb.type(googlePage.getSearchBox(), Keys.ENTER);
+		googlePage.getSearchReturnLink().click();
 	}
 
 	

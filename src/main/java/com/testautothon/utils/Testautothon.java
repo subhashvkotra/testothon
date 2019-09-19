@@ -39,8 +39,7 @@ public class Testautothon {
 
     @Parameters({"browser", "baseUrl"})
     @BeforeSuite(alwaysRun = true)
-    public void setUp(@Optional String browser, @Optional String baseUrl,
-                      @Optional String appActivity, @Optional String appPackage) throws IOException {
+    public void setUp(@Optional String browser, @Optional String baseUrl) throws IOException {
 
 
         String device = (System.getProperty("device") == null) ? "ALL" : System.getProperty("device");
@@ -53,7 +52,7 @@ public class Testautothon {
 
         sedriver = SeleniumDriverManager.createBrowserInstance(browser, baseUrl);
 
-        deviceProps = initialize.bringEnvironmentUp(DeviceEnvironment.valueOf(device), appEnv, false);
+//        deviceProps = initialize.bringEnvironmentUp(DeviceEnvironment.valueOf(device), appEnv, false);
 
     }
 
